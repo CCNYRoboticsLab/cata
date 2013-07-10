@@ -1,0 +1,20 @@
+<package>
+  <description brief="cata_gps is a GPS driver that wraps the GPS Novatel driver implemented by the ARIA project">
+
+     cata_gps
+
+  </description>
+  <author>Sebastian Pendola, Carlos Jaramillo</author>
+  <license>GPL version 3</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://www.ros.org/wiki/ccny-ros-pkg/cata_gps</url>
+  <depend package="std_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="gps_common" />
+  <depend package="Aria"/>
+  <depend package="nav_msgs"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+

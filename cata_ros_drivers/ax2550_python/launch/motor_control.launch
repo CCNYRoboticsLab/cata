@@ -1,0 +1,46 @@
+<launch>
+  <node name="ax2550_driver" pkg="ax2550_python" type="ax2550_driver.py" output="screen" respawn="true">
+        <param name="serial_port" value="/dev/ttyUSB3"/>
+        # TODO: udev rule
+        <!-- param name="serial_port" value="/dev/motor_controller"/ -->
+        
+        <param name="wheel_base_legth" value="0.70"/>
+        <param name="max_wheel_velocity" value="2.1"/> # m/s
+        <param name="motor_range_left" value="127.0"/> # Relative max motor speed code 
+        <param name="motor_range_right" value="127.0"/> # Relative max motor speed code 
+  </node>
+  
+  <node name="ax2550_odom" pkg="ax2550_python" type="ax2550_odom.py" output="screen">
+        # TODO: parameters
+  </node>
+  
+  <node name="ax2550_teleop" pkg="ax2550_python" type="ax2550_teleop.py" output="screen" respawn="true">
+        <param name="button_as_toggle" value="0"/>
+        <param name="button_for_speed_test" value="1"/>
+        <param name="button_speed_increase" value="5"/>
+        <param name="button_speed_decrease" value="4"/>
+        
+        # Speed test params:
+        <param name="speed_test_mode" value="false"/> # NOTE: enable to do a test, the robot turns at 50% power for the "max_duration" value
+        <param name="speed_test_direction" value="ccw"/> # cw: clockwise, ccw: counter-clockwise
+        <param name="max_duration" value="10"/>  # seconds
+
+  </node>
+  # Safety Light
+  # TODO: udev rule:
+  <node name="safety_light" pkg="ax2550_python" type="arduino_safety_light.py" output="screen" respawn="true">
+     <!-- TODO:
+     param name="serial_port" value="/dev/arduino"/ 
+     -->
+     <param name="serial_port" value="/dev/ttyUSB4"/>
+  </node>
+
+  <node name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">
+             <param name="dev" value="/dev/joystick"/>
+  </node>
+  
+    # CATA voice
+    <node name="cata_voice_node" pkg="cata_voice" type="cata_voice" output="screen" > </node>
+
+</launch>
+

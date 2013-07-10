@@ -1,0 +1,20 @@
+<package>
+  <description brief="cata_voice">
+
+     cata_voice
+
+  </description>
+  <author>Sebastian</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cata_voice</url>
+  <depend package="roscpp"/>
+  <depend package="std_msgs"/>
+  
+  <rosdep name="festival"/> <!-- External dependency, see rosdep.yaml file in the cata_ros_pkg stack -->
+
+  <platform os="ubuntu" version="10.04"/>
+  <platform os="ubuntu" version="11.10"/>
+</package>
+
+

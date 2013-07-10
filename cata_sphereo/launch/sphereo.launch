@@ -1,0 +1,24 @@
+<launch>
+    <!-- USB Camera via OpenCV -->
+    <node pkg="cata_sphereo" name="sphereo_node" type="sphereo_node" cwd="ROS_HOME" output="screen" respawn="true" >
+   	<!-- when cwd="ROS_HOME", the images will be saved under /home/user/.ros (hidden folder)
+   		 when cwd="node", the images will be saved in the package's bin folder 
+   	-->
+        <!-- Using Video (Camera) device -->
+        <param name="video_port_number" value="0"/>
+        <param name="camera_width" value="320"/>
+        <param name="camera_height" value="240"/>
+        <!-- Using video file -->
+        <param name="video_file_name" value="/home/carlos/data/tree.avi"/>
+        <!-- Using catadioptrics -->
+        <param name="calib_file_minor" value="$(find cata_sphereo)/config/calib_results_minor_mirror.txt" />
+        <param name="perspective" value="true"/>  <!-- false: for panoramic undistort | true: perspective -->
+        <param name="do_lane_detection" value="true"/>  
+        <param name="lane_size_px" value="1.0"/>  
+        <!-- To collect data for calibration -->
+        <param name="data_collect" value="false"/> <!-- only for saving 1 image at the time -->
+        <param name="pub_img_topic" value="true"/>
+        <param name="sub_to_img_topic" value="false"/>
+    </node> 
+    
+</launch>

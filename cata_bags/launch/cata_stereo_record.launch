@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="rosbag" type="record" name="cata_record" output="screen"
+    args="/stereo/left/image_color
+          /stereo/points2
+          -o $(find cata_bags)/data/cata_stereo"/>
+</launch>

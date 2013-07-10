@@ -1,0 +1,11 @@
+<launch>
+
+  <node pkg="rosbag" type="record" name="cata_record" output="screen"
+    args="/scan 
+          /base_odom 
+          /base_pose
+	  /compassData
+	  /compassImu
+	  /fix
+          -o $(find cata_bags)/data/cata_compass_laser_odom"/>
+</launch>

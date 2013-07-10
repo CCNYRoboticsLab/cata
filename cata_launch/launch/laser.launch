@@ -1,0 +1,28 @@
+<launch>
+    #### Laser Sensor Package #############
+  <node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node" respawn="false">
+  
+    <!-- Starts up faster, but timestamps will be inaccurate. --> 
+    <param name="calibrate_time" type="bool" value="false"/> 
+    
+    <!-- Set the port to connect to here -->
+    <param name="port" type="string" value="/dev/laser"/> 
+    <param name="intensity" type="bool" value="false"/>
+    <param name="allow_unsafe_settings" type="bool" value="False" />\
+    <param name="frame_id" type="str" value="/base_laser" />
+    <param name="time_offset" type="double" value="0.0" />
+  </node>
+
+  <!--
+    <node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node">
+        <param name="intensity" type="bool" value="False" />
+        <param name="port" type="str" value="/dev/laser" />
+        <param name="calibrate_time" type="bool" value="True" />
+        <param name="frame_id" type="str" value="/base_laser" />
+        <param name="time_offset" type="double" value="0.0" />
+        <param name="allow_unsafe_settings" type="bool" value="False" />
+        <param name="inverted" type="bool" value="True" />
+    </node>
+    -->
+</launch>
+

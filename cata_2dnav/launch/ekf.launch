@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf" respawn="true">
+        <param name="freq" value="50.0"/>
+        <param name="sensor_timeout" value="0.8"/>
+        <param name="publish_tf" value="true"/>
+        <param name="odom_used" value="true"/> <!-- Wheel odometry -->
+        <param name="imu_used" value="false"/> <!-- Using Compass -->
+        <param name="vo_used" value="false"/>  <!-- Using Visual Odometry from stereo camera -->    
+
+        <remap from="odom" to="cata/base_odom"/> # Odometry topic name that robot_pose_ekf subscribes to
+        <!-- remap from="imu_data" to="compassImu"/ -->  Compass topic name that robot_pose_ekf subscribes to
+        <param name="output_frame" value="odom_combined"/> <!-- This name is used for both the topic and the frame, BECAREFUL!!! it's very stupid to use it like that -->
+	
+	<!--
+        <remap from="/vo" to="/gps_odom" />
+	-->
+    </node>
+</launch>

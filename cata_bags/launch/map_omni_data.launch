@@ -1,0 +1,39 @@
+<launch>
+    <param name="use_sim_time" value="true"/>
+
+    <!-- Start the Extended Kalman Filter -->
+    <include file="$(find cata_launch)/launch/ekf.xml" />
+
+    <!-- Run ROS bag -->
+    <arg name="BAG_NAME1" value="cata_omni_2011-06-01-17-53-02"/>
+
+    <node pkg="rosbag" type="play" name="play1" output="screen"
+    args="$(find cata_bags)/data/$(arg BAG_NAME1).bag -d 5 --clock"/>
+
+    <!-- Start the Mapping Server -->
+    <include file="$(find cata_2dnav)/launch/navigation_slam.launch" /> <!-- with Gmapping -->
+       
+    <!-- USB Camera with OpenCV-->
+    <include file="$(find cata_sphereo)/launch/sphereo.launch"/>
+    
+    <!-- Static Trasforms: -->
+    <!-- This workaround for tf naming issue -->
+    <node pkg="tf" name="base_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_footprint /base_link 100" respawn="true"/>
+    <!-- Sensor Transforms: -->
+    <node pkg="tf" name="imu_to_base_tf" type="static_transform_publisher" args="0 0 0.80 0 0 0 /base_link /imu_frame 100" />
+    <node pkg="tf" name="laser_to_base_tf" type="static_transform_publisher" args="0.20 0 0.53 0 0 0 /base_link /base_laser 100" />
+    <node pkg="tf" name="videre_to_base_tf" type="static_transform_publisher" args="0.18 0 1.5 1.57 3.14 1.05 /base_link /stereo_optical_frame 100" />
+    <node pkg="tf" name="odomwheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /odom_wheel_frame 100" />
+    <node pkg="tf" name="posewheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /pose_wheel_frame 100" />
+    <node pkg="tf" name="omni_cloud_to_base_tf" type="static_transform_publisher" args="0 0 0 4.7124 3.1416 0 /base_link /omni_cloud_frame 100" />
+    <node pkg="tf" name="flag_cloud_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /flag_cloud_frame 100" />
+    
+    <!-- Visualization -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cata_launch)/config/cata_rviz.vcg" >
+    
+	<!-- 
+	<remap from="goal" to="move_base_simple/goal" /> 
+	-->
+  </node>
+</launch>
+

@@ -1,0 +1,8 @@
+<launch>
+  <node name="gpsd_client_node" pkg="gpsd_client" type="gpsd_client" output="screen" respawn="true" />
+  <node name="gps_conv" pkg="gps_common" type="utm_odometry_node" respawn="true" output="screen">
+	  <remap from="odom" to="vo"/>
+	  <param name="rot_covariance" value="99999" />
+	  <param name="frame_id" value="gps_frame_as_vo" /> 
+   </node>
+</launch>

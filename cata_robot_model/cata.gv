@@ -1,0 +1,41 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"back_wheel_joint" [label="back_wheel_joint"];
+"back_wheel" [label="back_wheel"];
+"laser" [label="laser"];
+"left_wheel_joint" [label="left_wheel_joint"];
+"left_axle" [label="left_axle"];
+"left_wheel" [label="left_wheel"];
+"right_wheel_joint" [label="right_wheel_joint"];
+"right_axle" [label="right_axle"];
+"right_wheel" [label="right_wheel"];
+"head" [label="head"];
+"antenna" [label="antenna"];
+"camera" [label="camera"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "base_to_back_wheel_joint" [label="xyz: 0 -0.1 -0.05 \nrpy: 0 -0 0"]
+"base_to_back_wheel_joint" -> "back_wheel_joint"
+"back_wheel_joint" -> "joint_to_back_wheel" [label="xyz: 0 0 -0.08 \nrpy: 0 1.57 0"]
+"joint_to_back_wheel" -> "back_wheel"
+"base_link" -> "base_to_laser" [label="xyz: 0 0.15 0.05 \nrpy: 0 -0 0"]
+"base_to_laser" -> "laser"
+"base_link" -> "base_to_left_wheel_joint" [label="xyz: -0.025 0.075 -0.05 \nrpy: 0 -0 0"]
+"base_to_left_wheel_joint" -> "left_wheel_joint"
+"left_wheel_joint" -> "axle_to_left_wheel_joint" [label="xyz: -0.12 0 -0.025 \nrpy: 0 1.57 0"]
+"axle_to_left_wheel_joint" -> "left_axle"
+"left_axle" -> "axle_to_left_wheel" [label="xyz: 0 0 -0.1 \nrpy: 0 -0 0"]
+"axle_to_left_wheel" -> "left_wheel"
+"base_link" -> "base_to_right_wheel_joint" [label="xyz: 0.025 0.075 -0.05 \nrpy: 0 -0 0"]
+"base_to_right_wheel_joint" -> "right_wheel_joint"
+"right_wheel_joint" -> "axle_to_right_wheel_joint" [label="xyz: 0.12 0 -0.025 \nrpy: 0 1.57 0"]
+"axle_to_right_wheel_joint" -> "right_axle"
+"right_axle" -> "axle_to_right_wheel" [label="xyz: 0 0 0.1 \nrpy: 0 -0 0"]
+"axle_to_right_wheel" -> "right_wheel"
+"base_link" -> "neck" [label="xyz: 0 0 0.1 \nrpy: 0 -0 0"]
+"neck" -> "head"
+"head" -> "scalp" [label="xyz: 0 0 0.15 \nrpy: 0 -0 0"]
+"scalp" -> "antenna"
+"antenna" -> "periscope" [label="xyz: 0 0 0.11 \nrpy: 0 -0 0"]
+"periscope" -> "camera"
+}

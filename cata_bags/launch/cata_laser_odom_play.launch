@@ -1,0 +1,35 @@
+<launch>
+  <arg name="BAG_NAME1" value="cata_compass_laser_odom_2011-06-05-21-07-30"/>
+
+  <param name="use_sim_time" value="true"/>
+
+  <node pkg="rosbag" type="play" name="play1" output="screen"
+    args="$(find cata_bags)/data/$(arg BAG_NAME1).bag -d 10 --clock" />
+
+    <!-- Start the Extended Kalman Filter -->
+    <include file="$(find cata_launch)/launch/ekf.xml" />
+    
+  <!-- Start the Navigation Subsystem -->
+  <!-- with AMCL -->
+  <!-- <include file="$(find cata_2dnav)/launch/navigation_amcl.launch" /> -->  
+  <!-- with Gmapping -->
+  <include file="$(find cata_2dnav)/launch/navigation_slam.launch" /> 
+  
+  <!-- Start the move_base Node -->
+  <include file="$(find cata_2dnav)/launch/move_base.xml" />
+
+  <!-- Static Trasforms: -->
+  <!-- This workaround for tf naming issue -->
+  <node pkg="tf" name="base_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_footprint /base_link 1000" respawn="true"/>
+  <!-- Sensor Transforms: -->
+  <node pkg="tf" name="odom_to_odom_combined_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /cata_odom_combined_frame /odom_combined 100" /> 
+  <node pkg="tf" name="imu_to_base_tf" type="static_transform_publisher" args="0 0 0.80 0 0 0 /base_link /imu_frame 100" />
+  <node pkg="tf" name="laser_to_base_tf" type="static_transform_publisher" args="0.20 0 0.53 0 0 0 /base_link /base_laser 100" />
+  <node pkg="tf" name="odomwheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /odom_wheel_frame 100" />
+  <node pkg="tf" name="posewheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /pose_wheel_frame 100" />
+  
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find cata_bags)/config/laser_bag.vcg" respawn="true">
+   <remap from="goal" to="move_base_simple/goal" /> 
+  </node>
+</launch>
+

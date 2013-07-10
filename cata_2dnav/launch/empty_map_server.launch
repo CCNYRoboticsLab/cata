@@ -1,0 +1,5 @@
+<launch>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find cata_2dnav)/config/map_server.yaml">
+        <param name="frame_id" type="str" value="/cata_odom_combined_frame" />
+    </node>
+</launch>

@@ -1,0 +1,21 @@
+<package>
+  <description brief="catanav">
+
+     catanav
+
+  </description>
+  <author>Sebastian</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/catanav</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="gps_common"/>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="os5000" />
+
+</package>
+
+

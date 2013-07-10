@@ -1,0 +1,9 @@
+<stack>
+  <description brief="cata_ros_pkg">cata_ros_pkg</description>
+  <author>Maintained by Carlos Jaramillo</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>https://github.com/ccny-ros-pkg/cata/wiki/CATA</url>
+  <depend stack="ros" />
+
+</stack>

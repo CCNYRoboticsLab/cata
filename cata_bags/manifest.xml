@@ -1,0 +1,16 @@
+<package>
+  <description brief="cata_bags">
+
+     cata_bags
+
+  </description>
+  <author>Carlos J</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cata_bags</url>
+  <depend package="roscpp"/>
+  <depend package="rosbag"/>
+
+</package>
+
+

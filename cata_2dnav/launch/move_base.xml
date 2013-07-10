@@ -1,0 +1,34 @@
+<launch>
+     <!-- for transforming messages related to Odometry -->
+  <node pkg="cata_2dnav" type="odom_to_base_link" respawn="true" name="odom_to_base_link" output="screen" />
+
+   <!-- for moving -->
+  <node pkg="move_base" type="move_base" respawn="true" name="move_base" output="screen">
+
+    <!-- Load common configuration files -->
+    <!-- <remap from="odom" to="base_odom" /> -->
+    <!-- remap from="odom" to="/cata/odom_combined" / --> # /cata/odom_combined takes the pose message from ekf
+						 # and converts into an Odometry message
+    <remap from="odom" to="/robot_pose_ekf/odom_combined" />
+
+        <!--
+    <remap from="cmd_vel" to="cmd_vel" />
+    -->
+ 
+    <!-- Load common configuration files (to both local and global costmap namespaces) -->
+    <rosparam file="$(find cata_2dnav)/config/costmap_global_sensor_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find cata_2dnav)/config/costmap_local_sensor_params.yaml" command="load" ns="local_costmap" />
+    <!-- Load local navigation specific parameters -->
+    <rosparam file="$(find cata_2dnav)/config/local_costmap_params.yaml" command="load" ns="local_costmap" />
+    <!-- Load global navigation specific parameters -->
+    <rosparam file="$(find cata_2dnav)/config/global_costmap_params.yaml" command="load" ns="global_costmap" />
+    <!-- Load base_local_planner parameters -->
+    <rosparam file="$(find cata_2dnav)/config/base_local_planner_params.yaml" command="load" ns="TrajectoryPlannerROS" />
+    <param name="controller_frequency" value="20" />
+
+<!--
+    <param name="recovery_behavior_enabled" value="false" />
+    <param name="clearing_rotation_allowed" value="false" />
+-->
+  </node>
+</launch>

@@ -1,0 +1,9 @@
+global_frame: /map #/cata_odom_combined_frame # /map #whether using map or not
+robot_base_frame: /base_link
+update_frequency: 1.0
+publish_frequency: 2.0
+static_map: false # false if not using an existing map or map server
+rolling_window: true
+width: 100.0 #10000000.0
+height: 100.0 # 10000000.0
+resolution: 0.2 # 50000

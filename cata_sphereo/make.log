@@ -1,0 +1,21 @@
+mkdir -p bin
+cd build && cmake -Wdev -DCMAKE_TOOLCHAIN_FILE=`rospack find rosbuild`/rostoolchain.cmake  ..
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build
+cd build && make 
+make[1]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[2]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[3]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[3]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+[  0%] Built target rospack_genmsg_libexe
+make[3]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[3]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+[  0%] Built target rosbuild_precompile
+make[3]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[3]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[3]: Entering directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+[ 33%] Building CXX object CMakeFiles/sphereo_node.dir/src/sphereo.o
+make[3]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[2]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'
+make[1]: Leaving directory `/opt/ros/stacks_manual/cata_ros_pkg/cata_sphereo/build'

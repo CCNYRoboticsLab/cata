@@ -1,0 +1,22 @@
+<launch>
+  <!-- videre stoc PointCloud2 -->
+  <include file="$(find videre_stereo_cam)/launch/videre_image_proc.launch"/>
+
+  <!-- fake laser -->
+  <node pkg="nodelet" type="nodelet" name="videre_laser" args="load pointcloud_to_laserscan/CloudToScan videre_stereo_cam" output="screen">
+    <param name="min_height" value="0.10"/>
+    <param name="max_height" value="1.60"/>
+    <param name="output_frame_id" value="/videre_depth_frame"/>
+    <remap from="cloud" to="cloud_throttled"/>
+  </node>
+
+  <!-- throttling -->
+  <node pkg="nodelet" type="nodelet" name="pointcloud_throttle" args="load pointcloud_to_laserscan/CloudThrottle videre_stereo_cam">
+    <param name="max_rate" value="2"/>
+    <remap from="cloud_in" to="/vslam/pointcloud"/>
+    <remap from="cloud_out" to="cloud_throttled"/>
+  </node>
+
+</launch>
+
+

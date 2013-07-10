@@ -1,0 +1,7 @@
+<launch>
+    <node name="oscompass" pkg="os5000" type="oscompass" output="screen">
+      <param name="port" value="/dev/compass"/>
+      <param name="baud" value="19200"/>
+      <param name="rate" value="30"/>
+    </node>
+</launch>

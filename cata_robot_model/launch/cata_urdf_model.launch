@@ -1,0 +1,3 @@
+<launch>
+    <param name="robot_description" command="find $(cata_robot_model)/cata_model.xml" />
+</launch>

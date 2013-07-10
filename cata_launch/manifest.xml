@@ -1,0 +1,25 @@
+<package>
+  <description brief="cata_launch">
+
+     cata_launch
+
+  </description>
+  <author>Carlos J</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cata_launch</url>
+  <depend package="robot_pose_ekf"/>
+  <depend package="gmapping"/>
+  <depend package="hokuyo_node"/>
+  <depend package="ax2550_python"/>
+  <depend package="os5000"/>
+  <depend package="move_base"/>
+  <depend package="cata_2dnav"/>
+  <depend package="cmvision"/>
+  <depend package="cata_gps"/>
+<!--  <depend package="cata_sphereo"/> -->
+  <depend package="cata_robot_model"/>
+
+</package>
+
+

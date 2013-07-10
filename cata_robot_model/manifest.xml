@@ -1,0 +1,17 @@
+<package>
+  <description brief="cata_robot_model">
+
+     cata_robot_model
+
+  </description>
+  <author>igvc_team</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cata_robot_model</url>
+  <depend package="urdf"/>
+  <depend package="tf" />
+  <depend package="sensor_msgs" />
+
+</package>
+
+

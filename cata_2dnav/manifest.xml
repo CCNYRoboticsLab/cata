@@ -1,0 +1,21 @@
+<package>
+  <description brief="cata_2dnav">
+
+     cata_2dnav
+
+  </description>
+  <author>Carlos J</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/cata_2dnav</url>
+  <depend package="move_base"/>
+   <depend package="move_base_msgs"/>
+  <depend package="actionlib"/>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="gps_common" />
+  <depend package="tf" />
+
+</package>
+
+

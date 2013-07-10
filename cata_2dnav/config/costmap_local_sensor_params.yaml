@@ -1,0 +1,34 @@
+map_type: costmap
+#transform_tolerance: 0.666
+obstacle_range: 2.0
+raytrace_range: 10.0
+inflation_radius: 0.30
+#unknown_cost_value: 1 # -1 
+#allow_unknown: 2
+
+observation_sources: laser_scan_sensor
+#observation_sources: laser_scan_sensor videre_point_cloud_sensor
+#observation_sources: videre_point_cloud_sensor
+#observation_sources: omni_point_cloud_sensor
+
+
+laser_scan_sensor: {sensor_frame: base_laser, data_type: LaserScan, topic: scan, marking: true, clearing: true,  min_obstacle_height: 0.1,
+            max_obstacle_height: 1.6, expected_update_rate: 2.0}
+# videre_point_cloud_sensor: {sensor_frame: stereo_optical_frame, data_type: PointCloud2, topic: /stereo/points2, marking: true, clearing: true, min_obstacle_height: 0.1,
+#             max_obstacle_height: 1.6}
+#omni_point_cloud_sensor: {sensor_frame: omni_cloud_frame, data_type: PointCloud2, topic: /sphereo_node/cloud, marking: true, clearing: true, min_obstacle_height: 0.01,
+#             max_obstacle_height: 0.11}
+
+# image_point_cloud: {sensor_frame: camera_frame, data_type: PointCloud, topic: /image_point_cloud, marking: true, clearing: true}
+# point_cloud_sensor: {sensor_frame: frame_name, data_type: PointCloud, topic: topic_name, marking: true, clearing: true}
+#base_scan_marking: {sensor_frame: base_scan_link,  data_type: PointCloud2, topic: /base_scan/marking, expected_update_rate: 0.2, 
+#                    observation_persistence: 0.0, marking: true, clearing: false, min_obstacle_height: 0.06, max_obstacle_height: 2.0}
+
+
+#footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
+footprint: [[0.40, 0.45], [0.40,-0.45], [-0.55,-0.45], [-0.80,0.0], [-0.55,0.45]]
+#robot_radius: 0.60
+#controller_frequency: 10.0
+#controller_patience: 15.0
+#footprint_padding: 0.1
+

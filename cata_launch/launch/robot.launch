@@ -1,0 +1,74 @@
+<launch>
+    <!-- Start the Extended Kalman Filter -->
+    <include file="$(find cata_2dnav)/launch/ekf.launch" />
+
+    <!-- Start the motor controller and teleoperation nodes -->
+    <include file="$(find ax2550_python)/launch/motor_control.launch" /> 
+ 
+    <!-- Start the IMU for orientation odometry -->
+<!--
+    <include file="$(find os5000)/launch/oscompass.launch" />
+-->
+
+    <!-- Start the GPS for position odometry -->
+<!--
+    <include file="$(find cata_gps)/launch/cata_gps.launch" />
+-->
+
+    <!-- Start the Hokuyo Laser Range Finder -->
+    <include file="$(find cata_launch)/launch/laser.launch" />
+
+    <!-- Start the Navigation Subsystem -->
+    <!-- with AMCL -->
+    <!-- <include file="$(find cata_2dnav)/launch/navigation_amcl.launch" /> -->  
+    <!-- with Gmapping -->
+    <include file="$(find cata_2dnav)/launch/navigation_slam.launch" /> 
+
+    <!-- Start the move_base Node -->
+    <include file="$(find cata_2dnav)/launch/move_base.xml" />
+
+    <!-- sends navigation goals -->
+    <!--
+    <include file="$(find cata_2dnav)/launch/send_simple_waypoints.launch" /> 
+    -->
+<!--
+    <include file="$(find cata_2dnav)/launch/send_waypoints.launch" /> 
+ -->
+
+    <!-- stereo vision -->
+    <!-- TODO: videre cloud is too noisy! -->
+    <!-- <include file="$(find videre_stereo_cam)/launch/videre_image_proc.launch"/> -->
+
+    <!-- USB Camera with OpenCV -->
+<!--
+    <include file="$(find cata_sphereo)/launch/sphereo.launch"/>
+-->
+
+    <!-- Flag Finder with CMvision -->
+<!--
+    <include file="$(find cmvision)/launch/cmvision.launch"/>
+-->    
+    <!-- Safety Light -->
+<!-- # Launched from motor_control.launch
+   <node name="safety_light" pkg="ax2550_python" type="arduino_safety_light.py" output="screen" respawn="true">
+      	<param name="serial_port" value="/dev/arduino"/>
+    </node>
+-->
+    <!-- Static Trasforms: -->
+    <node pkg="tf" name="base_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_footprint /base_link 1000" respawn="true"/>
+    <!-- Sensor Transforms: -->
+    <!-- 
+     node pkg="tf" name="odom_to_odom_combined_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /cata_odom_combined_frame /odom_combined 100" / --> 
+
+<!--    <node pkg="tf" name="map_to_odom_combined_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /cata_odom_combined_frame 100" /> -->
+    <node pkg="tf" name="imu_to_base_tf" type="static_transform_publisher" args="0 0 0.80 0 0 0 /base_link /imu_frame 100" />
+    <node pkg="tf" name="laser_to_base_tf" type="static_transform_publisher" args="0.25 0 0.50 0 0 0 /base_link /base_laser 500" />
+<!--    <node pkg="tf" name="videre_to_base_tf" type="static_transform_publisher" args="0.18 0 1.5 1.57 3.14 1.05 /base_link /stereo_optical_frame 100" /> -->
+    <node pkg="tf" name="odomwheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /odom_wheel_frame 100" />
+    <node pkg="tf" name="posewheel_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /pose_wheel_frame 100" />
+    <node pkg="tf" name="gps_as_vo_to_base_tf" type="static_transform_publisher" args="0 0 1.5 0 0 0 /base_link /gps_frame_as_vo 100" />
+<!--    <node pkg="tf" name="omni_cloud_to_base_tf" type="static_transform_publisher" args="0 0 0 4.7124 3.1416 0 /base_link /omni_cloud_frame 100" />
+-->
+<!--    <node pkg="tf" name="flag_cloud_to_base_tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /flag_cloud_frame 100" /> -->
+
+</launch>

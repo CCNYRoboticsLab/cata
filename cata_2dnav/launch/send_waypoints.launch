@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="cata_2dnav" name="waypoints_node" type="waypoints_node" output="screen" respawn="true" >
+		<param name="waypoints_file" value="$(find cata_2dnav)/config/waypoints.txt"/>
+		<param name="gps_waypoints" value="false"/>
+    </node> 
+    
+</launch>
