@@ -1,8 +1,6 @@
 <launch>
   <node name="ax2550_driver" pkg="ax2550_python" type="ax2550_driver.py" output="screen" respawn="true">
-        <param name="serial_port" value="/dev/ttyUSB3"/>
-        # TODO: udev rule
-        <!-- param name="serial_port" value="/dev/motor_controller"/ -->
+        <param name="serial_port" value="/dev/ttyS0"/>
         
         <param name="wheel_base_legth" value="0.70"/>
         <param name="max_wheel_velocity" value="2.1"/> # m/s
@@ -27,12 +25,8 @@
 
   </node>
   # Safety Light
-  # TODO: udev rule:
   <node name="safety_light" pkg="ax2550_python" type="arduino_safety_light.py" output="screen" respawn="true">
-     <!-- TODO:
-     param name="serial_port" value="/dev/arduino"/ 
-     -->
-     <param name="serial_port" value="/dev/ttyUSB4"/>
+     <param name="serial_port" value="/dev/arduino"/>
   </node>
 
   <node name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">

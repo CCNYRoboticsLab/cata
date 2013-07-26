@@ -36,7 +36,7 @@
  *
  */
 
-#include "oscompassROS_SR.h"
+#include <os5000/oscompassROS_SR.h>
 
 /*------------------------------------------------------------------------------
  * OSCompass()

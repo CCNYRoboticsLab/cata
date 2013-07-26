@@ -1,6 +1,7 @@
 <launch>
     <node name="oscompass" pkg="os5000" type="oscompass" output="screen">
-      <param name="port" value="/dev/compass"/>
+      # TODO: udev rule for /dev/compass
+      <param name="port" value="/dev/ttyUSB0"/>
       <param name="baud" value="19200"/>
       <param name="rate" value="30"/>
     </node>

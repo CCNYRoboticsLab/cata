@@ -1,10 +1,8 @@
 <launch>
-<<<<<<< HEAD
+  # TODO: change port number (laptop's serial port is ttyS0 but it may be used by the motor controller
   <node name="cata_gps_node" pkg="cata_gps" type="cata_gps" output="screen" args="-gpsType novatel -gpsBaud 9600 -gpsPort /dev/ttyS0" respawn="true" />
-=======
-  <node name="cata_gps_node" pkg="cata_gps" type="cata_gps" output="screen" args="-gpsType novatel -gpsBaud 9600 -gpsPort /dev/ttyUSB5" respawn="true" />
->>>>>>> 6e97e70df589eeb6fd5d795078f798652a58f764
-   <node name="gps_conv" pkg="gps_common" type="utm_odometry_node" respawn="true" output="screen">
+   
+    <node name="gps_conv" pkg="gps_common" type="utm_odometry_node" respawn="true" output="screen">
 	  <remap from="odom" to="vo"/>
 	  <param name="rot_covariance" value="99999" />
 	  <param name="frame_id" value="gps_frame_as_vo" /> 

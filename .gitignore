@@ -22,6 +22,7 @@ Release
 *.ncb
 *.user
 *.tmp
+*.cfgc
 __init__.py
 __init__.pyc
 .pydevproject

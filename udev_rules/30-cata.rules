@@ -1,0 +1,4 @@
+KERNEL=="js?", ATTRS{idVendor}=="046d", ATTRS{product}=="Logitech Cordless RumblePad 2", ATTRS{manufacturer}=="Logitech", SYMLINK+="joystick", MODE="666", GROUP="dialout"
+KERNEL=="ttyACM?", ATTRS{idVendor}=="15d1", ATTRS{product}=="URG-Series USB Driver", ATTRS{manufacturer}=="Hokuyo Data Flex for USB", SYMLINK+="laser", MODE="666", GROUP="dialout"
+KERNEL=="ttyACM?", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="8036", SYMLINK+="arduino", MODE="666", GROUP="dialout"
+KERNEL=="ttyUSB?", ATTRS{manufacturer}=="Silicon Labs", ATTRS{product}=="CP2102 USB to UART Bridge Controller", ATTRS{serial}=="0001", SYMLINK+="compass", MODE="666", GROUP="dialout"
