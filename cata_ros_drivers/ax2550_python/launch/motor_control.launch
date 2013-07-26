@@ -26,7 +26,7 @@
   </node>
   # Safety Light
   <node name="safety_light" pkg="ax2550_python" type="arduino_safety_light.py" output="screen" respawn="true">
-     <param name="serial_port" value="/dev/arduino"/>
+     <param name="serial_port" value="/dev/arduino_leonardo"/> # or /dev/arduino_uno
   </node>
 
   <node name="joy_node" pkg="joy" type="joy_node" output="screen" respawn="true">

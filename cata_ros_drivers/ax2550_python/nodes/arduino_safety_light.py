@@ -11,7 +11,7 @@ It will send a signal that will toggle the light mode of the CATA Safety light.
 message type: char
 board name: "arduino"
 
-board address on CATAs ToughBook: "/dev/ttyACM1"
+board address on CATAs ToughBook: "/dev/arduino_uno"
 
 Mode messages
 Autonomous send: char 'a'
@@ -44,13 +44,13 @@ class SafetyLight(object):
         """Function called after object instantiation"""
         
         # Make a list of usb serial locations to test connection IFF it is unkown
-        self.locations = ['/dev/ttyACM0','/dev/ttyACM1','/dev/ttyACM3','/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2','/dev/ttyUSB3', '/dev/ttyS0','/dev/ttyS1','/dev/ttyS2','/dev/ttyS3','/dev/tty.usbmodem411'] 
+        self.locations = ['/dev/arduino_uno','/dev/ttyACM0','/dev/ttyACM1','/dev/ttyACM3','/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2','/dev/ttyUSB3', '/dev/ttyS0','/dev/ttyS1','/dev/ttyS2','/dev/ttyS3','/dev/tty.usbmodem411'] 
        
         rospy.init_node('arduino_safety_light', anonymous=True)
         
         #Parameteres:
         # Get the serial port name
-        self.device = serial_port or rospy.get_param('~serial_port', '/dev/ttyACM1')
+        self.device = serial_port or rospy.get_param('~serial_port', '/dev/arduino_uno')
         
         #    for device in locations:  
         try:
@@ -67,8 +67,17 @@ class SafetyLight(object):
         #Listens for Autonomous Mode indicator signal
         rospy.Subscriber("/cata/navigation_mode", LightMode, self.lightCallback, queue_size=1)
       
+        # Register shutdown function
+        rospy.on_shutdown(self.shutdown)
+
         # Handle ros requests
         rospy.spin()
+
+
+    def shutdown(self):
+        """Called when the node is shutsdown"""
+        self.arduino.write('s') # put light in standby mode        
+        self.arduino.close()
         
     def lightCallback(self, data):
         """Called everytime the autonomous mode updates"""
